@@ -413,12 +413,12 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
 
             public MyViewHolder(View view) {
                 super(view);
-                mTvAppName = view.findViewById(R.id.tv_name);
-                mTvAppSize = view.findViewById(R.id.tv_size);
-                mTvAppInstall = view.findViewById(R.id.tv_install);
-                mTvAppPath = view.findViewById(R.id.tv_path);
-                mTvAppDelete = view.findViewById(R.id.tv_delete);
-                ivIcon = view.findViewById(R.id.iv_icon);
+                mTvAppName = (TextView) view.findViewById(R.id.tv_name);
+                mTvAppSize = (TextView) view.findViewById(R.id.tv_size);
+                mTvAppInstall = (TextView) view.findViewById(R.id.tv_install);
+                mTvAppPath = (TextView) view.findViewById(R.id.tv_path);
+                mTvAppDelete = (TextView) view.findViewById(R.id.tv_delete);
+                ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
             }
         }
 

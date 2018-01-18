@@ -328,6 +328,7 @@ public class WebService extends Service {
         }
 
         public void setFileName(String fileName) {
+            // TODO 需要解决 6.0 的文件权限读写问题
             this.fileName = fileName;
             totalSize = 0;
             if (!Constants.DIR.exists()) {
