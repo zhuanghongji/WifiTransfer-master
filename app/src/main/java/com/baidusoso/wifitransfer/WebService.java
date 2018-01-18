@@ -53,7 +53,8 @@ public class WebService extends Service {
     private static final String EOT_CONTENT_TYPE = "image/vnd.ms-fontobject";
     private static final String MP3_CONTENT_TYPE = "audio/mp3";
     private static final String MP4_CONTENT_TYPE = "video/mpeg4";
-    FileUploadHolder fileUploadHolder = new FileUploadHolder();
+
+    private FileUploadHolder fileUploadHolder = new FileUploadHolder();
     private AsyncHttpServer server = new AsyncHttpServer();
     private AsyncServer mAsyncServer = new AsyncServer();
 
@@ -102,7 +103,8 @@ public class WebService extends Service {
         server.get("/images/.*", this::sendResources);
         server.get("/scripts/.*", this::sendResources);
         server.get("/css/.*", this::sendResources);
-        //index page
+
+        // index page
         server.get("/", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
             try {
                 response.send(getIndexContent());
@@ -111,7 +113,8 @@ public class WebService extends Service {
                 response.code(500).end();
             }
         });
-        //query upload list
+
+        // query upload list
         server.get("/files", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
             JSONArray array = new JSONArray();
             File dir = Constants.DIR;
@@ -143,7 +146,8 @@ public class WebService extends Service {
             }
             response.send(array.toString());
         });
-        //delete
+
+        // delete
         server.post("/files/.*", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
             final UrlEncodedFormBody body = (UrlEncodedFormBody) request.getBody();
             if ("delete".equalsIgnoreCase(body.get().getString("_method"))) {
@@ -161,7 +165,8 @@ public class WebService extends Service {
             }
             response.end();
         });
-        //download
+
+        // download
         server.get("/files/.*", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
             String path = request.getPath().replace("/files/", "");
             try {
@@ -181,7 +186,8 @@ public class WebService extends Service {
             }
             response.code(404).send("Not found!");
         });
-        //upload
+
+        // upload
         server.post("/files", (AsyncHttpServerRequest request, AsyncHttpServerResponse response) -> {
                     final MultipartFormDataBody body = (MultipartFormDataBody) request.getBody();
                     body.setMultipartCallback((Part part) -> {
@@ -211,6 +217,7 @@ public class WebService extends Service {
                     });
                 }
         );
+
         server.get("/progress/.*", (final AsyncHttpServerRequest request,
                                     final AsyncHttpServerResponse response) -> {
                     JSONObject res = new JSONObject();
@@ -310,11 +317,11 @@ public class WebService extends Service {
     }
 
     public class FileUploadHolder {
+
         private String fileName;
         private File recievedFile;
         private BufferedOutputStream fileOutPutStream;
         private long totalSize;
-
 
         public BufferedOutputStream getFileOutPutStream() {
             return fileOutPutStream;

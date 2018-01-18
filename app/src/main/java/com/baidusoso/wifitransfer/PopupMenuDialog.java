@@ -35,21 +35,29 @@ import timber.log.Timber;
 
 public class PopupMenuDialog {
     Unbinder mUnbinder;
+
     @BindView(R.id.popup_menu_title)
     TextView mTxtTitle;
+
     @BindView(R.id.popup_menu_subtitle)
     TextView mTxtSubTitle;
+
     @BindView(R.id.shared_wifi_state)
     ImageView mImgLanState;
+
     @BindView(R.id.shared_wifi_state_hint)
     TextView mTxtStateHint;
+
     @BindView(R.id.shared_wifi_address)
     TextView mTxtAddress;
+
     @BindView(R.id.shared_wifi_settings)
     Button mBtnWifiSettings;
+
     @BindView(R.id.shared_wifi_button_split_line)
     View mButtonSplitLine;
-    WifiConnectChangedReceiver mWifiConnectChangedReceiver = new WifiConnectChangedReceiver();
+
+    private WifiConnectChangedReceiver mWifiConnectChangedReceiver = new WifiConnectChangedReceiver();
     private Context context;
     private Dialog dialog;
     private Display display;
@@ -71,12 +79,7 @@ public class PopupMenuDialog {
         dialog = new Dialog(context, R.style.PopupMenuDialogStyle);
         dialog.setContentView(view);
         mUnbinder = ButterKnife.bind(this, dialog);
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-                onDialogDismiss(dialogInterface);
-            }
-        });
+        dialog.setOnDismissListener(dialogInterface -> onDialogDismiss(dialogInterface));
 
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.LEFT | Gravity.BOTTOM);

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 
 public class ItemButtomDecoration extends RecyclerView.ItemDecoration {
+
     private Context mContext;
     private int height;
 
@@ -28,7 +29,7 @@ public class ItemButtomDecoration extends RecyclerView.ItemDecoration {
      */
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        //设定底部边距为10px
+        // 设定底部边距为10px
         if ( parent.getChildLayoutPosition(view) == state.getItemCount() - 1
                 || parent.getChildLayoutPosition(view) == -1 ) {
             outRect.set(0, 0, 0, 0);

@@ -9,6 +9,7 @@ import java.io.File;
  */
 
 public class Constants {
+
     public static final int HTTP_PORT = 12345;
     public static final String DIR_IN_SDCARD = "WifiTransfer";
     public static final int MSG_DIALOG_DISMISS = 0;

@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
  */
 
 public class InfoModel {
+
     private String path;
     private String version;
     private String size;
@@ -69,5 +70,18 @@ public class InfoModel {
 
     public void setInstalled(boolean installed) {
         this.installed = installed;
+    }
+
+    @Override
+    public String toString() {
+        return "InfoModel{" +
+                "path='" + path + '\'' +
+                ", version='" + version + '\'' +
+                ", size='" + size + '\'' +
+                ", name='" + name + '\'' +
+                ", packageName='" + packageName + '\'' +
+                ", installed=" + installed +
+                ", icon=" + icon +
+                '}';
     }
 }
