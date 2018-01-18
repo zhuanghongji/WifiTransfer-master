@@ -71,7 +71,12 @@ public class PopupMenuDialog {
         dialog = new Dialog(context, R.style.PopupMenuDialogStyle);
         dialog.setContentView(view);
         mUnbinder = ButterKnife.bind(this, dialog);
-        dialog.setOnDismissListener(this::onDialogDismiss);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                onDialogDismiss(dialogInterface);
+            }
+        });
 
         Window dialogWindow = dialog.getWindow();
         dialogWindow.setGravity(Gravity.LEFT | Gravity.BOTTOM);

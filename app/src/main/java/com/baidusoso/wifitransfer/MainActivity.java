@@ -56,13 +56,13 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
     Unbinder mUnbinder;
-    @BindView( R.id.toolbar )
+    @BindView(R.id.toolbar )
     Toolbar mToolbar;
-    @BindView( R.id.fab )
+    @BindView(R.id.fab )
     FloatingActionButton mFab;
-    @BindView( R.id.recyclerview )
+    @BindView(R.id.recyclerview )
     RecyclerView mAppList;
-    @BindView( R.id.content_main )
+    @BindView(R.id.content_main )
     SwipeRefreshLayout mSwipeRefreshLayout;
 
     List<InfoModel> mApps = new ArrayList<>();
@@ -76,20 +76,17 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         setSupportActionBar(mToolbar);
 
         //menu item点击事件监听
-        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch ( item.getItemId() ) {
-                    case R.id.test_menu1:
-                        if ( !mApps.isEmpty() ) {
-                            showDialog();
-                        } else {
-                            Toast.makeText(MainActivity.this, "暂无可删内容", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                }
-                return false;
+        mToolbar.setOnMenuItemClickListener(item -> {
+            switch ( item.getItemId() ) {
+                case R.id.test_menu1:
+                    if ( !mApps.isEmpty() ) {
+                        showDialog();
+                    } else {
+                        Toast.makeText(MainActivity.this, "暂无可删内容", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
             }
+            return false;
         });
         Timber.plant(new Timber.DebugTree());
         RxBus.get().register(this);
@@ -276,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     @Subscribe( thread = EventThread.IO, tags = {@Tag( Constants.RxBusEventType.LOAD_BOOK_LIST )} )
     public void loadAppList(Integer type) {
         Timber.d("loadAppList:" + Thread.currentThread().getName());
-        List<InfoModel> listArr = new ArrayList<>();
+        final List<InfoModel> listArr = new ArrayList<>();
         File dir = Constants.DIR;
         if ( dir.exists() && dir.isDirectory() ) {
             File[] fileNames = dir.listFiles();
